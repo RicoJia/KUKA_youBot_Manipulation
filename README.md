@@ -1,5 +1,5 @@
 
-#KUKA youBot Pick & Place
+# KUKA youBot Pick & Place
 In this project, I developed a control algorithm and a V-REP simolator for a KUKA youBot to accomplish a pick and place task. 
 
 ![alt text](https://i.ytimg.com/vi/zfYSGZto2Gk/hqdefault.jpg)
@@ -31,23 +31,22 @@ SE(3) Transform matrices <img src="https://latex.codecogs.com/gif.latex?X_d"/>, 
 #### Joint Velocity Control
 A hybrid feedforward+PI controller is applied here 
      
-<img src="https://latex.codecogs.com/gif.latex? V(t) = [Ad_{X^{-1}X_d}] V_d(t) + K_{p} X_{err}(t) + K_{i} \int_{0}^{t} X_{err}(t) dt" /> 
-     
+![control](https://latex.codecogs.com/gif.latex?V(t)&space;=&space;[Ad_{X^{-1}X_d}]&space;V_d(t)&space;&plus;&space;K_{p}&space;X_{err}(t)&space;&plus;&space;K_{i}&space;\int_{0}^{t}&space;X_{err}(t)&space;dt)     
   - V is the required twist to take the end effector from the **current pose** to the **next desired pose**. Xd is the desired end-effector pose in 3D transformation matrix, i.e, Lie Group SE(3).
   Vd is the twist required to take current desired end effector configuration to the next desired end effector configuration and is given by
-<img src="https://latex.codecogs.com/gif.latex? [V_d] = (1 / \Delta t) log(X_d^{-1} X_{d, next})" />, where delta_T is the time step between the current configuration and the next desired configuration). 
+![vd](https://latex.codecogs.com/gif.latex?[V_d]&space;=&space;(1&space;/&space;\Delta&space;t)&space;log(X_d^{-1}&space;X_{d,&space;next})), where delta_T is the time step between the current configuration and the next desired configuration). 
   
   -  X_err is the error twist between the current pose and the desired pose, generated from the SE(3) transformation matrix from the current pose to the desired pose.
-    Therefore we can have an error term which react to the error of the end effector  <img src="https://latex.codecogs.com/gif.latex?K_{p} X_{err}(t)"/>
+    Therefore we can have an error term which react to the error of the end effector  ![kp](https://latex.codecogs.com/gif.latex?K_{p}&space;X_{err}(t))
   
   - An integral term is also added so it keeps a bringing down the steady state error between the end effector and the current pose, if there is any
-    <img src="https://latex.codecogs.com/gif.latex? K_{i} \int_{0}^{t} X_{err}(t) dt" /> 
+   ![ki](https://latex.codecogs.com/gif.latex?K_{i}&space;\int_{0}^{t}&space;X_{err}(t)&space;dt)
 
 #### Joint and Wheel Speeds Calculation
 The joint speeds of the arm and the wheel speed of the mobile platform are determined by: 
 
-<img src="https://latex.codecogs.com/gif.latex?\begin{pmatrix} u \\ \dot{\theta} \end{pmatrix} = J_e^{+} V" /> 
-, Where u and theta_dots are wheel and joint speeds, and J_e is the 6x9 Jacobian matrix that maps joint and wheel speeds to end-effector twists. J_e is developed from 
+![u,\dot\theta](https://latex.codecogs.com/gif.latex?[u,\dot\theta]&space;=&space;J_e^{&plus;}&space;V)
+, Where u and theta_dot are wheel and joint speeds, and J_e is the 6x9 Jacobian matrix that maps joint and wheel speeds to end-effector twists. J_e is developed from 
 
 [omnidirectional wheel speed control](https://youtu.be/NcOT9hOsceE)
 
@@ -55,11 +54,11 @@ The joint speeds of the arm and the wheel speed of the mobile platform are deter
 To calculate the current pose, we calculate:
 
 1. new arm joint angles = (old arm joint angles) + (joint speeds) * Δt, , from which we can also 
-get <img src="https://latex.codecogs.com/gif.latex?X_{chassis-to-end-effector}"/>
+get ![xchassis](https://latex.codecogs.com/gif.latex?X_{chassis-to-end-effector})
 2. new wheel angles = (old wheel angles) + (wheel speeds) * Δt
 3. new chassis configuration (Heading, x, y) is obtained from odometry with new wheel angles, from which we can also 
-get <img src="https://latex.codecogs.com/gif.latex?"/>
-4. End-effector pose in SE(3) Transformation Matrix = <img src="https://latex.codecogs.com/gif.latex?X = X_{chassis}X_{chassis-to-end-effector}"/>
+get ![xcha](https://latex.codecogs.com/gif.latex?X_{chassis})
+4. End-effector pose in SE(3) Transformation Matrix : ![x](https://latex.codecogs.com/gif.latex?X&space;=&space;X_{chassis}X_{chassis-to-end-effector})
 
 ### More Info
 For more details about this project, check out [the project instructions here](http://hades.mech.northwestern.edu/index.php/Mobile_Manipulation_Capstone). 
