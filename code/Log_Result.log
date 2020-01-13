@@ -1,0 +1,4 @@
+DEBUG:root:Initial configuration of the robot - [phi, x,y ,theta1, theta2, theta3, theta4, theta5, u1, u2, u3, u4]: 0.5235987755982988-1.0-1.00.00.00.00.00.00.00.00.00.0
+DEBUG:root:enters main loop of milestone 3
+DEBUG:root:Loop done. A csv file for the configuration is generated.
+DEBUG:root:Error is written to file
