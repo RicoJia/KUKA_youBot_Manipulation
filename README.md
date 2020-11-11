@@ -6,8 +6,8 @@ In this project, I developed a control algorithm and a V-REP simolator for a KUK
 ### Key Concepts and Steps
 Key Steps include:
 1. End-effector trajectory planning
-2. Wheel and joint speed calcolation
-3. Position Simolation with joint speeds
+2. Wheel and joint speed calculation
+3. Position Simulation with joint speeds
 4. Visualization on V-REP 
 
 Key Concepts include: 
@@ -21,8 +21,8 @@ Key Concepts include:
 
 ### Design 
 
-The KUKA youBot consists of a mobile platform with 4 omnidirectional wheels (3 degrees-of freedom) and one 5 degrees-of-freedom arm. Therefore, there are
-7 degrees of freedom associated to the system, making the system a redundant system. 
+The KUKA youBot consists of a mobile platform with 4 omnidirectional wheels and one 5 degrees-of-freedom arm. Therefore, there are
+9 degrees of freedom associated to the system, making the system a redundant. 
 
 #### Trajectory Generation
 [Point to point linear Trajectory Generation technique](https://youtu.be/1JRMqfEm79c) is used for generating the desired trajectory as a series of 
